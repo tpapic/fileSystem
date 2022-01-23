@@ -1,0 +1,25 @@
+CREATE (root:Folder {name: 'Root', path: '/'})
+
+CREATE (fol1:Folder {name: 'fol1', path: '/fol1'})
+CREATE (fol11:Folder {name: 'fol11', path: '/fol1/fol11'})
+CREATE (f1:File {name: 'f1.txt', path: '/fol1'})
+CREATE (f11:File {name: 'f11.txt', path: '/fol1/fol11'})
+
+CREATE (fol1)-[:IN_FOLDER]->(root)
+CREATE (fol11)-[:IN_FOLDER]->(fol1)
+CREATE (f1)-[:IN_FOLDER]->(fol1)
+CREATE (f11)-[:IN_FOLDER]->(fol11)
+
+CREATE (fol2:Folder {name: 'fol2',path: '/fol2'})
+CREATE (f2:File {name: 'f2.txt', path: '/fol2'})
+CREATE (f3:File {name: 'f3.txt', path: '/fol2'})
+
+CREATE (fol2)-[:IN_FOLDER]->(root)
+CREATE (f2)-[:IN_FOLDER]->(fol2)
+CREATE (f3)-[:IN_FOLDER]->(fol2)
+
+CREATE (test1:File {name: 'test1.txt', path: '/fol1/fol11'})
+CREATE (test2:File {name: 'test1.txt', path: '/fol2'})
+
+CREATE (test1)-[:IN_FOLDER]->(fol11)
+CREATE (test2)-[:IN_FOLDER]->(fol2)
